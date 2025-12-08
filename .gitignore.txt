@@ -1,0 +1,28 @@
+# =======================
+# FRONTEND (React)
+# =======================
+
+frontend/node_modules/
+frontend/.env
+frontend/.env.local
+frontend/.cache/
+frontend/build/
+
+# =======================
+# BACKEND (.NET)
+# =======================
+
+backend/**/bin/
+backend/**/obj/
+backend/**/.vs/
+backend/**/*.user
+backend/**/*.suo
+backend/**/*.cache
+backend/**/*.log
+
+# =======================
+# SISTEMA
+# =======================
+
+.DS_Store
+Thumbs.db
