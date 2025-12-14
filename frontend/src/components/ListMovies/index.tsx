@@ -1,25 +1,28 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import {  MovieCard, MovieImage, MovieContent, MovieTitle, MovieYear } from "./style.ts";
 import { GetAllMovies } from "../../services/movieService.tsx";
-import { Movie } from "../../types/movie.ts";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { setMovies } from "../../store/movieSlice.ts";
+import { RootState } from "../../store";
 
 
 export default function ListMovies({search}: {search: string}) {
-    const [listMovies, setListMovies] = useState<Movie[]>([]);
-     const navigate = useNavigate();
-    console.log("🚀 ~ ListMovies ~ listMovies:", listMovies)
+    const dispatch = useDispatch();
+    const movies = useSelector((state: RootState) => state.movies.list);
+    const navigate = useNavigate();
+    console.log("🚀 ~ ListMovies ~ listMovies:", movies)
 
     useEffect(() => {
           async function loadMovies() {
             const response = await GetAllMovies();
             console.log("🚀 ~ loadMovies ~ response:", response)
-            setListMovies(response);
+            dispatch(setMovies(response));
           }
           loadMovies();
     }, []);
 
-    const filteredMovies = listMovies.filter((movie) =>
+    const filteredMovies = movies.filter((movie) =>
         movie.title.toLowerCase().includes(search.toLowerCase())
     );
 

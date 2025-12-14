@@ -2,8 +2,11 @@ import React, { useState } from "react";
 import { CreateMovie } from "../../services/movieService.tsx";
 import { Movie } from "../../types/movie.ts";
 import { toast } from "react-toastify";
+import { useDispatch } from "react-redux";
+import { addMovie } from "../../store/movieSlice.ts";
 
 export default function useCreateMovie() {
+  const dispatch = useDispatch();
 
   const [formCadastro, setFormCadastro] = useState<Movie>({
     title: "",
@@ -48,7 +51,9 @@ export default function useCreateMovie() {
     }
 
     try {
-      await CreateMovie(formCadastro);
+      const movieSave = await CreateMovie(formCadastro);
+      dispatch(addMovie(movieSave));
+
       toast.success("Filme cadastrado com sucesso!", { theme: "dark" });
     } catch (error) {
       console.error(error);

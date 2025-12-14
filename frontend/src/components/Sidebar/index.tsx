@@ -15,9 +15,6 @@ export default function SideBar() {
         <NavLink to="/" style={{ textDecoration: "none"}}>
             <MenuItem><HomeOutlinedIcon style={styleIcon}/></MenuItem>
         </NavLink>
-          <MenuItem>
-        <MovieFilterOutlinedIcon style={styleIcon}/>
-          </MenuItem>
         <NavLink to="/CreateMovie" style={{ textDecoration: "none"}}>
           <MenuItem><AddCircleOutlineOutlinedIcon style={styleIcon}/></MenuItem>
         </NavLink>
